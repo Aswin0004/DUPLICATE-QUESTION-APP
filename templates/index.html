@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duplicate Question Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; }
+        form { max-width: 500px; margin: auto; }
+        input[type="text"], textarea {
+            width: 100%; padding: 10px; margin: 10px 0;
+            border: 1px solid #ccc; border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px; background: #28a745;
+            color: white; border: none; border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px; text-align: center;
+            font-weight: bold; font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>Duplicate Question Predictor</h2>
+    <form method="POST">
+        <label>Question 1:</label>
+        <textarea name="question1" rows="3" required></textarea>
+
+        <label>Question 2:</label>
+        <textarea name="question2" rows="3" required></textarea>
+
+        <button type="submit">Check</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        Result: <span style="color: {{ 'green' if result == 'Duplicate' else 'red' }}">{{ result }}</span>
+    </div>
+    {% endif %}
+
+    <p style="text-align:center; margin-top:2rem;">
+        <a href="{{ url_for('bulk') }}">→ Try Bulk Upload</a>
+    </p>
+</body>
+</html>
